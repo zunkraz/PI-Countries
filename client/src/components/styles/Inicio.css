@@ -1,0 +1,10 @@
+.main{
+    display: grid;
+    justify-content: center;
+}
+.btnIniciar{
+   
+    color: black;
+    font-size: 2rem;
+  
+}

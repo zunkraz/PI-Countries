@@ -1,0 +1,16 @@
+.divPaises{
+    margin-top: 10vh;
+   display: grid;
+   grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+   row-gap: 15px;
+   column-gap: 15px;
+}
+.divPaisesInterno{
+    background-color: cornflowerblue;
+    text-align: center;
+}
+.divImage{
+    margin-top: 10px;
+    width: 200px;
+    height: 150px;
+}
