@@ -5,17 +5,18 @@ import './styles/Listado.css'
 
 
 
-const Listado = () => {
+const Listado = ({arrPage,arrFilters}) => {
 
-const getCountry =  useSelector(state => state.paises)
-const changeLoading = useSelector(state => state.loading)
-const dispatch = useDispatch()
+ if(arrPage.length === 0){arrPage = arrFilters.slice(0,10)}
+
+ const changeLoading = useSelector(state => state.loading)
+ const dispatch = useDispatch()
 
 useEffect( () => {
-    if(getCountry.length === 0 && !changeLoading){dispatch(verPaises())}
+    if(arrFilters.length === 0 && !changeLoading){dispatch(verPaises())}
 })
 
-let paises = getCountry.map(element => {
+const paises = arrPage.map(element => {
                 let valor = <div  className='divPaisesInterno'>
 
                         <img src={element.image} alt="image of some country"
@@ -26,7 +27,6 @@ let paises = getCountry.map(element => {
                     </div>;
         return valor
 });
-paises=paises.slice(0,10)
 
 
     return (  
