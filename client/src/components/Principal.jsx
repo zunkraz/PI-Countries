@@ -5,44 +5,27 @@ import PaisBuscado from './PaisBuscado';
 import Nav from './Nav';
 
 
-import { busquedaPais,clearFilters} from '../actions/actions';
+import {clearFilters} from '../actions/actions';
+
 import { useDispatch, useSelector} from 'react-redux';
 
 
 const Principal = () => {
     
-    //useState para activar el paginado
-    const [arrPage, setPage] = useState([]) 
-    //BUSQUEDA DEL PAIS
     const dispatch = useDispatch()
-    const [searchCountry, setSearchCountry] = useState()
-    const [error, setError] = useState(false)
-    
-    const handleSubmit = e => {
-        e.preventDefault()
-        //Validaciones
-        if(searchCountry === ''){return setError(true)}
-        setError(false)
-        //Envio de solicitud
-        dispatch(busquedaPais(searchCountry))
-        //Limpiar el input
-        setSearchCountry('')
-    }
+    //useState para activar el paginado
+    const [page, setPage] = useState(1) 
+
 
 const paisBuscado = useSelector(state => state.filters)
 //Eliminar el pais
 const cleanCountry= () => dispatch(clearFilters())
-const changePage = arr => setPage(arr)
+const changePage = page => setPage(page)
 
   return ( 
 <div>
-    {error === true ? <div>Este Campo no Puede Estar Vacío</div> : null}
 
-    <Nav 
-   setSearchCountry={setSearchCountry}
-   handleSubmit={handleSubmit}
-   searchCountry={searchCountry}
-   />
+    <Nav/>
   
 
     {paisBuscado.length === 1 ? 
@@ -51,7 +34,7 @@ const changePage = arr => setPage(arr)
         cleanCountry={cleanCountry}/>
         : 
         <Listado
-        arrPage={arrPage}/>  
+        page={page}/>  
     }
   
     <Paginado 
@@ -61,3 +44,4 @@ const changePage = arr => setPage(arr)
 }
  
 export default Principal;
+

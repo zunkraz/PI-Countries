@@ -8,10 +8,9 @@ const Paginado = ({changePage}) => {
     const pagina = [];
 
     
-    // arrFilters.length/10 ESTO IBA EN RENDERPAGINAS
-    let renderPaginas = 26;
+    let renderPaginas = Math.ceil(1 + (arrFilters.length -9)/10);
     for(let i= 1; i<=renderPaginas; i++){
-        pagina.push(<span id={i} onClick={() => changePage(arrFilters.slice(i*10-11,i*10-1))}>{i}</span>)
+        pagina.push(<span id={i} onClick={() => changePage(i)}>{i}</span>)
     }
 
     return ( 

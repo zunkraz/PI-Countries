@@ -18,7 +18,6 @@ const [activity,setActivity] = useState({
 const [error,setError] = useState(true)
 
 const handleChange = e => {
-    console.log(e.target.value)
     setActivity({
         ...activity,
         [e.target.name] : e.target.value

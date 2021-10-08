@@ -8,10 +8,12 @@ import { VER_PAISES,
     ACTIVIDAD_LOADING,
     BUSCAR_PAIS,
     VER_DETALLE_PAIS,
-    BUSCAR_PAIS_ERROR } from '../types';
+    BUSCAR_PAIS_ERROR, 
+    CONTINENT_FILTER,
+    ACTIVIDAD_FILTER} from '../types';
 
 //Funciones del helpers 
-import {compareAZ, compareZA} from '../helpers/helpers' 
+import {compareAZ, compareZA, compareCONT, compareACT} from '../helpers/helpers' 
 //Estado inicial
 
 const initialState = {
@@ -51,12 +53,14 @@ switch (action.type) {
         }
     case VER_DETALLE_PAIS:
         return{
+            ...state,
+            filters: [action.payload],
             loading:false
         }
     case CLEAR_FILTERS: 
         return {
             ...state,
-            filters: [],
+            filters: [...state.paises],
             loading: false
         }
     case AZ_FILTER:
@@ -81,7 +85,18 @@ switch (action.type) {
             ...state,
             loading:false
         }
-   
+    case CONTINENT_FILTER:
+        return{
+            ...state,
+            filters: state.paises.sort(compareCONT),
+            loading:false,
+        }
+    case ACTIVIDAD_FILTER:
+        return{
+            ...state,
+            filters: state.paises.sort(compareACT),
+            loading:false,
+        }
     default:
         return state;
 }  }

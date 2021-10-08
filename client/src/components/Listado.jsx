@@ -1,32 +1,36 @@
 import React, {useEffect} from 'react'
 import {useSelector, useDispatch} from 'react-redux'
-import { verPaises } from '../actions/actions';
+import { verDetalle, verPaises } from '../actions/actions';
 import './styles/Listado.css'
 
 
 
-const Listado = ({arrPage}) => {
+const Listado = ({page}) => {
 
-const arrFilters = useSelector(state => state.filters)
-console.log(arrFilters)
- if(arrPage.length === 0){arrPage = arrFilters.slice(0,9)}
+const dispatch = useDispatch()
+const arrFilters = useSelector(state => state.paises)
+const changeLoading = useSelector(state => state.loading)
+let arrPage
+if(page === 1){arrPage = arrFilters.slice(0,9)
+}else{
+    arrPage = arrFilters.slice(page*10-11,page*10-1)
+}
 
- const changeLoading = useSelector(state => state.loading)
- const dispatch = useDispatch()
+
 
 useEffect( () => {
     if(arrFilters.length === 0 && !changeLoading){dispatch(verPaises())}
 })
 
-const showDetails = (e) => alert(e) 
-// çTERRRRRMINAAAAAAAAAAAR
-// çTERRRRRMINAAAAAAAAAAAR
-// çTERRRRRMINAAAAAAAAAAAR
+const showDetails = e => dispatch(verDetalle(e)) 
+// const showDetails = e => alert(e)
+
+
 
 const paises = arrPage.map(element => {
                 let valor = <div  
                 className='divPaisesInterno'
-                onClick={ () => showDetails(element.id)}>
+                onClick={() => showDetails(element.id)}>
 
                         <img src={element.image} alt="image of some country"
                         className='divImage'/>

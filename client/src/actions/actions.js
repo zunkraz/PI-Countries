@@ -1,12 +1,15 @@
-// import { shallowEqual } from 'react-redux'
+
 import {
     VER_PAISES,
     PAISES_LOADING,
     BUSCAR_PAIS,
     BUSCAR_PAIS_ERROR,
+    VER_DETALLE_PAIS,
     ZA_FILTER,
     AZ_FILTER,
+    CONTINENT_FILTER,
 
+    ACTIVIDAD_FILTER,
     ACTIVIDAD_LOADING,
     CREAR_ACTIVIDAD,
     CLEAR_FILTERS,
@@ -18,9 +21,9 @@ import Swal from 'sweetalert2'
 
 export function verPaises(){
 
-    return async function(dispatch){
+    return function(dispatch){
         dispatch({type: PAISES_LOADING,payload:true})
-         fetch('http://localhost:3001/countries')
+        return fetch('http://localhost:3001/countries')
         .then(response => response.json())
         .then(data => dispatch({type: VER_PAISES,payload: data}))         
     }
@@ -42,11 +45,16 @@ export function busquedaPais(name){
                 
     }
 }
-export function verDetalle(){
+export function verDetalle(idPais){
     return function(dispatch){
         dispatch({type: PAISES_LOADING,payload:true})
+        console.log('entro')
+       return fetch(`http://localhost:3001/countries/${idPais}`)
+        .then(response => response.json())
+        .then(data => dispatch({type: VER_DETALLE_PAIS,payload: data})) 
 }
 }
+//ESTO HAY QUE CORREGIRLO Y PERSONALIZAR LO QUE SE MANDA AL FRONT
 
 export function clearFilters(){
     return function(dispatch){
@@ -90,3 +98,16 @@ export function crearActividad(obj) {
     }
 }
 
+export function  continentFilter() {
+    return function(dispatch) {
+            dispatch({type:ACTIVIDAD_LOADING, payload: true })
+        return dispatch({type: CONTINENT_FILTER})
+    }   
+}
+
+export function activityFilter() {
+    return function(dispatch) {
+        dispatch({type:ACTIVIDAD_LOADING, payload: true })
+    return dispatch({type: ACTIVIDAD_FILTER})
+    }
+}

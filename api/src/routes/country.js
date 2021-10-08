@@ -35,8 +35,19 @@ router.get('/:idPais', async (req,res)=> {
     if(!Idpais){
         return res.status(404).send('error')
       }
-     return res.json(Idpais);
-    }catch(error){return res.tatus(500).send(error)}
+    //   Idpais = Idpais.map(e => (
+    //     {nombre:e.nombre,
+    //     continente:e.continente,
+    //     image: e.image,
+    //     id: e.id,
+    //     actividad: e.activities[0].nombre,
+    //     dificultad: e.activities[0].dificultad,
+    //     duracion: e.activities[0].duracion,
+    //     temporada: e.activities[0].temporada,
+    // })
+    // )
+     return res.send(Idpais);
+    }catch(error){return res.status(500).send(error)}
 })
 
 
