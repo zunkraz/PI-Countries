@@ -1,14 +1,14 @@
 import React, {useState} from 'react'
-import {orderAZ, orderZA, continentFilter, activityFilter} from '../actions/actions';
+import {orderAZ, orderZA,filterValue, activityFilter, verPaises} from '../actions/actions';
 import { useDispatch } from 'react-redux';
 
  
-const Filters = () => {
+const Filters = ({changePage}) => {
 
 const [state, setstate] = useState({filtro:''})
 const dispatch = useDispatch()
 const orderCountries = str => {
-    if(str === 'ZA'){
+    if(str === 'Z-A'){
         return dispatch(orderAZ()) 
     }else{
         return dispatch(orderZA())
@@ -22,34 +22,52 @@ const handleChange = e => {
         
     })
 }
-if(state.filtro === 'Continente'){
+if(state.filtro){ 
+    let valor = state.filtro
+    console.log(valor)
+    if(valor === 'Con Actividad' || valor === 'Sin Actividad'){
+        setstate({filtro:''})
+        changePage(1)
+        return  dispatch(activityFilter(valor))
+    }
     setstate({filtro:''})
-    return dispatch(continentFilter())
-}else if(state.filtro === 'Actividad'){
-    setstate({filtro:''})
-    return dispatch(activityFilter())
+    changePage(1)
+   return  dispatch(filterValue(valor))
 }
 
     return ( 
         <div>
             <label htmlFor='order'>Ordenar Por</label>
-           <div>
-               <label htmlFor='Z-A'>Z-A</label>
-               <input type="radio" id='Z-A' name='order' onClick={() => orderCountries('ZA')}/>
-               <label htmlFor='A-Z' value='A-Z'>A-Z</label>
-               <input type="radio" id='A-Z' name='order' onClick={() => orderCountries('AZ')}/>
-           </div>
+           <select onChange={e => orderCountries(e.target.value)}>
+           <option>Seleccionar</option>
+           <option key='8' name='Z-A' value='Z-A'>Z-A</option>
+           <option key='9' name='A-Z' value='A-Z'>A-Z</option>
+           </select>
+
         <label htmlFor='filterBy'>Filtrar Por</label>
-            <select 
+        <select 
                 name="filtro" 
                 id='filterBy' 
                 value={state.filtro}
                 onChange={handleChange}>
-                { ['Selecionar', 'Actividad', 'Continente'].map(val =>
-                (<option value={val}>{val}</option>))
-                }   
-            </select>   
+        <option>Seleccionar</option>
+        <optgroup label="Actividad">
+            <option key='0' name='Sin Actividad' value='Sin Actividad'>Sin Actividad</option>
+            <option key='1' value='Con Actividad'>Con Actividad</option>
+        </optgroup>
+        <optgroup label="Continente">
+            <option key='2' name='Africa' value='Africa'>Africa</option>
+            <option key='3' name='Antarctic' value='Antarctic'>Antarctic</option>
+            <option key='4' name='Americas' value='Americas'>Americas</option>
+            <option key='5' name='Asia' value='Asia'>Asia</option>
+            <option key='6' name='Europe' value='Europe'>Europa</option>
+            <option key='7' name='Oceania' value='Oceania'>Oceania</option>
+        </optgroup>
+        </select>   
+
+        <button onClick={() => dispatch(verPaises())}>Limpiar Filtros</button>
         </div>
+    
      );
 }
  

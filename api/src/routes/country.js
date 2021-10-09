@@ -15,11 +15,21 @@ router.get('/', async (req,res)=> {
             if(!pais) return res.status(404).send('El Pais no existe')
             return res.json(pais)
         }
-        const Paises = (await Country.findAll()).map(e => (
-            {nombre:e.nombre, continente: e.continente, image: e.image, id: e.id}
+        const Paises = (await Country.findAll({
+            include: Activity
+        })).map(e => (
+           
+            {
+                nombre:e.nombre, 
+                continente: e.continente, 
+                image: e.image, 
+                id: e.id,
+                Activities: e.Activities.length 
+            }
         ));
         return res.json(Paises);
     }catch(error){
+        console.log(error)
         return res.status(500).send(error)
     }
 })
@@ -28,26 +38,28 @@ router.get('/', async (req,res)=> {
 router.get('/:idPais', async (req,res)=> {
     const {idPais} = req.params
     try{
-        const Idpais = await Country.findByPk(idPais,{
-        include: Activity
-    })
-
+        let Idpais = (await Country.findByPk(idPais,{
+        include: Activity,
+        attributes: {
+            exclude: ['createdAt', 'updatedAt']
+        }
+    })).toJSON()
+    Idpais = {...Idpais, Activities: Idpais.Activities.map(e => ({
+        nombre: e.nombre,
+        dificultad: e.dificultad,
+        duracion: e.duracion,
+        temporada: e.temporada
+        }))
+    }
+    
     if(!Idpais){
         return res.status(404).send('error')
       }
-    //   Idpais = Idpais.map(e => (
-    //     {nombre:e.nombre,
-    //     continente:e.continente,
-    //     image: e.image,
-    //     id: e.id,
-    //     actividad: e.activities[0].nombre,
-    //     dificultad: e.activities[0].dificultad,
-    //     duracion: e.activities[0].duracion,
-    //     temporada: e.activities[0].temporada,
-    // })
-    // )
+ 
      return res.send(Idpais);
-    }catch(error){return res.status(500).send(error)}
+    }catch(error){
+        console.log(error)
+        return res.status(500).send(error)}
 })
 
 

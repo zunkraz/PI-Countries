@@ -1,27 +1,43 @@
 import React from 'react'
+import { clearFilters } from '../actions/actions'
+import { useSelector, useDispatch } from 'react-redux'
+import { Link } from 'react-router-dom';
 
-const PaisBuscado = ({paisBuscado, cleanCountry}) => {
+const PaisBuscado = () => {
+
+    const dispatch = useDispatch();
+    const cleanCountry= () => dispatch(clearFilters());
+    const aux = useSelector(state => state.aux);
+
+    let actividades
+    if(aux.Activities && aux.Activities.length){
+        actividades = aux.Activities.map(element => {
+        let act = 
+        <div key={element.nombre}>
+            <h3>Actividad: {element.nombre}</h3>
+            <h3>Dificultad: {element.dificultad}</h3>
+            <h3>Duración: {element.duracion}</h3>
+            <h3>Temporada: {element.temporada}</h3>
+        </div>
+        return act
+       })
+    }
     return ( 
         <div>
-            <img src={paisBuscado[0].image} alt="image of some country"
+            <img src={aux.image} alt="image of some country"
             className='divImage'/>
-            <h2>{paisBuscado[0].nombre}</h2>
-            <h3>{paisBuscado[0].continente}</h3>
-            <h3>{paisBuscado[0].id}</h3>
-            <h3>{paisBuscado[0].capital}</h3>
-            <h3>{paisBuscado[0].area} km<sup>2</sup></h3>
+            <h2>{aux.nombre}</h2>
+            <h3>{aux.continente}</h3>
+            <h3>{aux.id}</h3>
+            <h3>{aux.capital}</h3>
+            <h3>{aux.area} km<sup>2</sup></h3>
 
-    {paisBuscado[0].Activities[0]? 
-        <div>
-             <h3>Actividad: {paisBuscado[0].Activities[0].nombre}</h3>
-             <h3>Dificultad: {paisBuscado[0].Activities[0].dificultad}</h3>
-             <h3>Duración: {paisBuscado[0].Activities[0].duracion}</h3>
-             <h3>Temporada: {paisBuscado[0].Activities[0].temporada}</h3>
-         </div>
-         : <h3>No hay actividades aun</h3>
+    {aux.Activities && aux.Activities.length ?
+        <div>{actividades}</div>
+        : <h3>No hay actividades aun</h3>
     }
            
-            <button onClick={cleanCountry}>X</button>
+            <Link to={'/principal'}><button onClick={cleanCountry}>X</button> </Link>
             
         </div>
 

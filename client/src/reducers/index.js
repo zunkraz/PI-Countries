@@ -1,6 +1,7 @@
 //Con los reducers explican como cambia el estado de la aplicacion despues de que alguna accion sucedio
 import { VER_PAISES,
     PAISES_LOADING,
+    CLEAR_PAISES,
     CLEAR_FILTERS,
     AZ_FILTER,
     ZA_FILTER,
@@ -10,16 +11,18 @@ import { VER_PAISES,
     VER_DETALLE_PAIS,
     BUSCAR_PAIS_ERROR, 
     CONTINENT_FILTER,
-    ACTIVIDAD_FILTER} from '../types';
+    CON_ACTIVIDAD_FILTER,
+    SIN_ACTIVIDAD_FILTER} from '../types';
 
 //Funciones del helpers 
-import {compareAZ, compareZA, compareCONT, compareACT} from '../helpers/helpers' 
+import {compareAZ, compareZA} from '../helpers/helpers' 
 //Estado inicial
 
 const initialState = {
     paises: [],
     loading:false,
     filters:[],
+    aux: {},
     error: ''
   }
 
@@ -37,7 +40,8 @@ switch (action.type) {
             ...state,
             paises: action.payload,
             loading: false,
-            filters:action.payload
+            filters:action.payload,
+            aux: {}
         }
     case BUSCAR_PAIS: 
         return {
@@ -54,25 +58,33 @@ switch (action.type) {
     case VER_DETALLE_PAIS:
         return{
             ...state,
-            filters: [action.payload],
+            aux: action.payload,
             loading:false
+        }
+    case CLEAR_PAISES:
+        return{
+            ...state,
+            paises: [],
+            filters: [],
+            loading: false
         }
     case CLEAR_FILTERS: 
         return {
             ...state,
             filters: [...state.paises],
+            aux:[],
             loading: false
         }
     case AZ_FILTER:
         return{
             ...state,
-            filters: state.paises.sort(compareAZ),
+            filters: state.filters.sort(compareAZ),
             loading: false
         }
     case ZA_FILTER:
         return{
             ...state,
-            filters: state.paises.sort(compareZA),
+            filters: state.filters.sort(compareZA),
             loading: false
         }
     case ACTIVIDAD_LOADING:
@@ -88,13 +100,19 @@ switch (action.type) {
     case CONTINENT_FILTER:
         return{
             ...state,
-            filters: state.paises.sort(compareCONT),
+            filters: state.paises.filter(pais => pais.continente === action.payload),
             loading:false,
         }
-    case ACTIVIDAD_FILTER:
+    case CON_ACTIVIDAD_FILTER:
         return{
             ...state,
-            filters: state.paises.sort(compareACT),
+            filters: state.paises.filter(pais => pais.Activities > 0),
+            loading:false,
+        }
+    case SIN_ACTIVIDAD_FILTER:
+        return{
+            ...state,
+            filters: state.paises.filter(pais => pais.Activities === 0),
             loading:false,
         }
     default:

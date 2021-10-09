@@ -5,13 +5,13 @@ import Filters from './Filters';
 import { useDispatch} from 'react-redux';
 import { busquedaPais} from '../actions/actions';
 
-const Nav = () => {
+const Nav = ({changePage}) => {
     const dispatch = useDispatch()
 
-    // NUEVO 15:24
+ 
     const [searchCountry, setSearchCountry] = useState()
     const [error, setError] = useState(false)
-    
+     
     const handleSubmit = e => {
         e.preventDefault()
         //Validaciones
@@ -39,14 +39,12 @@ const Nav = () => {
                 </form>
                 <Link to='/actividad'>Crear Actividad</Link>
     
-                <Filters />
+                <Filters changePage={changePage}/>
             </nav>
-            {/* //NUEVO 15:24 */}
+        
               {error === true ? <div>Este Campo no Puede Estar Vacío</div> : null}
         </Fragment>
      );
 }
  
 export default Nav;
-// agregue la 5, 40 9-21, 8, 9 traje fragment,usestate y usedispatch y cambie los argumentos que recibe la funcion 
-// {handleSubmit,setSearchCountry,searchCountry}

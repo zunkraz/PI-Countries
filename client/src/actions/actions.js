@@ -8,8 +8,10 @@ import {
     ZA_FILTER,
     AZ_FILTER,
     CONTINENT_FILTER,
+    CLEAR_PAISES,
 
-    ACTIVIDAD_FILTER,
+    SIN_ACTIVIDAD_FILTER,
+    CON_ACTIVIDAD_FILTER,
     ACTIVIDAD_LOADING,
     CREAR_ACTIVIDAD,
     CLEAR_FILTERS,
@@ -29,7 +31,6 @@ export function verPaises(){
     }
 }
 
-//CAMBIOS AQUI
 export function busquedaPais(name){
 
     return async function(dispatch){
@@ -89,6 +90,7 @@ export function crearActividad(obj) {
             headers: {'Content-Type': 'application/json'}
         })
         .then(() => dispatch({type:CREAR_ACTIVIDAD}))
+        .then(() => dispatch({type: CLEAR_PAISES}))
         .then(() => { Swal.fire(
             'Correcto',
             'La actividad se agregó correctamente',
@@ -97,17 +99,24 @@ export function crearActividad(obj) {
         
     }
 }
-
-export function  continentFilter() {
-    return function(dispatch) {
-            dispatch({type:ACTIVIDAD_LOADING, payload: true })
-        return dispatch({type: CONTINENT_FILTER})
-    }   
-}
-
-export function activityFilter() {
+export function filterValue(valor) {
     return function(dispatch) {
         dispatch({type:ACTIVIDAD_LOADING, payload: true })
-    return dispatch({type: ACTIVIDAD_FILTER})
+    return dispatch({type: CONTINENT_FILTER, payload: valor})  
+}
+}
+
+export function activityFilter(valor) {
+    return function(dispatch) {
+        dispatch({type:ACTIVIDAD_LOADING, payload: true })
+        if(valor === 'Con Actividad'){
+            return dispatch({type: CON_ACTIVIDAD_FILTER})
+        }else{
+            return dispatch({type: SIN_ACTIVIDAD_FILTER})
+
+        }
     }
+}
+export function restoreAll() {
+    return verPaises()
 }

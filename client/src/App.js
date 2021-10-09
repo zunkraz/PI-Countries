@@ -2,6 +2,7 @@
 import Inicio from './components/Inicio';
 import Principal from './components/Principal';
 import Actividad from './components/Actividad';
+import PaisBuscado from './components/PaisBuscado';
 import './App.css';
 
 //importaciones de librerias 
@@ -18,6 +19,7 @@ function App() {
         <Switch>
           <Route exact path ='/' component={Inicio} />
           <Route exact path ='/principal' component={Principal} />
+          <Route  exact path ='/principal/:id' component={PaisBuscado} />
           <Route exact path ='/:actividad' component={Actividad} />
         </Switch>
           
