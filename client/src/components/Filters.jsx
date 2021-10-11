@@ -2,7 +2,12 @@ import React, {useState} from 'react'
 import {orderAZ, orderZA,filterValue, activityFilter, verPaises} from '../actions/actions';
 import { useDispatch } from 'react-redux';
 import './styles/Filters.css'
- 
+import ig from './styles/imgs/insta.png'  
+import linkedin from './styles/imgs/linkedin.png'  
+import git from './styles/imgs/git.png'  
+import { Link } from 'react-router-dom';
+
+
 const Filters = ({changePage}) => {
 
 const [state, setstate] = useState({filtro:''})
@@ -66,8 +71,13 @@ if(state.filtro){
         </select>   
 
         <button className='btnClean' onClick={() => dispatch(verPaises())}>Limpiar Filtros</button>
+       
+            <div className='divIcons'>
+                <Link to='//instagram.com/arodri_g/' target='_blank'><img src={ig} className='icons' alt="" /></Link>
+                <Link to='//linkedin.com/in/zunkraz' target='_blank'><img src={linkedin} className='icons' alt="" /></Link>
+               <Link to='//github.com/zunkraz' target='_blank'><img src={git} className='icons' alt="" /></Link>
+            </div>
         </div>
-    
      );
 }
  

@@ -5,6 +5,7 @@ import './styles/Nav.css'
 import { useDispatch, useSelector} from 'react-redux';
 import { busquedaPais} from '../actions/actions';
 
+
 const Nav = ({changePage}) => {
     const dispatch = useDispatch()
     const error404 = useSelector(state => state.error)
@@ -39,6 +40,7 @@ const handleChange = e => {
                 <Link to='/actividad' className='btnCrear'>Crear Actividad</Link>
     
                 <Filters changePage={changePage}/>
+               
             </nav>
             {error404 ? <div className='error'>{error404}</div> : null}
         </Fragment>

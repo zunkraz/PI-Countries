@@ -1,9 +1,10 @@
-import React, {useState, useEffect} from 'react'
+import React, {useState} from 'react'
 import {useSelector, useDispatch} from 'react-redux'
 import { compareAZ } from '../helpers/helpers';
 import {crearActividad, verPaises} from '../actions/actions'
 import { Link } from 'react-router-dom';
 import './styles/Actividad.css'
+
 const Actividad = () => {
 
 const dispatch = useDispatch();
@@ -239,7 +240,6 @@ return (
         </select>  
         <div className='btnContainer'>
             <input 
-            className='btnCrearActividad'
             type="submit" 
             value='Crear Actividad'
             disabled={error.invalidThree} 

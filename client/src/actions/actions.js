@@ -53,7 +53,7 @@ export function verDetalle(idPais){
     return function(dispatch){
         dispatch({type: PAISES_LOADING,payload:true})
        return fetch(`http://localhost:3001/countries/${idPais}`)
-        .then(response => response.json())
+        .then(response =>  response.json())
         .then(data => dispatch({type: VER_DETALLE_PAIS,payload: data})) 
 }
 }

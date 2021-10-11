@@ -19,8 +19,8 @@ function App() {
         <Switch>
           <Route exact path ='/' component={Inicio} />
           <Route exact path ='/principal' component={Principal} />
-          <Route  exact path ='/principal/:id' component={PaisBuscado} />
-          <Route exact path ='/:actividad' component={Actividad} />
+          <Route  exact path ='/principal/:id' render={({match})=><PaisBuscado id={match.params.id}/>}/>
+          <Route exact path ='/actividad' component={Actividad} />
         </Switch>
           
     </Router>

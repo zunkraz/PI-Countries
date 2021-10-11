@@ -43,23 +43,23 @@ router.get('/:idPais', async (req,res)=> {
         attributes: {
             exclude: ['createdAt', 'updatedAt']
         }
-    })).toJSON()
-    Idpais = {...Idpais, Activities: Idpais.Activities.map(e => ({
+        })).toJSON()
+    
+        if(!Idpais){
+            return res.status(404).send('error')
+        }
+
+        Idpais = {...Idpais, Activities: Idpais.Activities.map(e => ({
         nombre: e.nombre,
         dificultad: e.dificultad,
         duracion: e.duracion,
         temporada: e.temporada
         }))
     }
-    
-    if(!Idpais){
-        return res.status(404).send('error')
-      }
- 
+
      return res.send(Idpais);
     }catch(error){
-        console.log(error)
-        return res.status(500).send(error)}
+        return res.status(404).send('se rompe')}
 })
 
 
