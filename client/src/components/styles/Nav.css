@@ -1,0 +1,81 @@
+.mainNav{
+        height: 100vh;
+        background:#FEEA00;
+        box-shadow: black 2px 1px 5px;
+        display: grid;
+        grid-template-rows: 20% 10% 70%;
+    }
+.formNav{
+    display: flex;
+    flex-direction: column;
+    margin-top: 1rem;
+    margin: auto;
+    
+}
+.inputNav{
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+    border: none;
+    width: 80%;
+    border-bottom: 3px solid black;
+    border-radius: 0.3rem;
+    background: transparent;
+    margin: auto;
+}
+.inputNav:focus{
+    outline: none;
+}
+.btnBuscar{
+    width: 50%;
+    font-size: 1.8rem;
+    border-radius: 0.3rem;
+    background: transparent;
+    border: 3px solid black;
+    cursor: pointer;
+    transition: 0.3s;
+    margin: auto;
+    margin-top: 1rem;
+
+}
+.btnBuscar:hover{
+    background: black;
+    color:#FEEA00 ;
+}
+.btnBuscarDisable{
+    width: 50%;
+    font-size: 1.8rem;
+    border-radius: 0.3rem;
+    background: transparent;
+    border: 3px solid gray;
+    cursor: pointer;
+    transition: 0.3s;
+    margin: auto;
+    margin-top: 1rem;
+}
+.btnCrear{
+    text-decoration: none;
+    text-align: center;
+    width: 50%;
+    color: black;
+    font-size: 1.8rem;
+    border-radius: 0.3rem;
+    background: transparent;
+    border: 3px solid black;
+    cursor: pointer;
+    transition: 0.3s;
+    margin: auto;
+}
+.btnCrear:hover{
+    background: black;
+    color:#FEEA00 ;
+}
+.error{
+    margin: auto;
+    text-align: center;
+    border-radius: 0.7rem;
+    box-shadow: black 4px 4px 15px;
+    background-color: #FEEA00;
+    height: 30vh;
+    width: 60vw;
+    font-size: 5rem; 
+}

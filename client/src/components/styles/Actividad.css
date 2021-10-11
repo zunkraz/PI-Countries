@@ -1,0 +1,112 @@
+.mainActividad{
+    height: 100vh;
+    display: flex;
+    align-items: center;
+}
+.formActividad{
+    background-color: #FEEA00;
+    border-radius: 0.5rem;
+    box-shadow: black 3px 3px 5px;
+    padding: 0.5rem;
+    display: flex;
+    align-items: center;
+    flex-direction: column; 
+    width: 30vw;
+    margin: auto;
+}
+.inputActividad{
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+    border: none;
+    width: 80%;
+    border-bottom: 3px solid black;
+    border-radius: 0.3rem;
+    background: transparent;
+    margin: auto;
+    margin-top: 1rem;
+}
+input:focus{
+    outline: none;
+}
+.labelActividad{
+    margin-top: 1rem;
+    font-size: 2rem;
+}
+.selectActividad{
+    text-align: center;
+    background:transparent;
+    font-size: 1.5rem;
+    border: 3px solid black;
+    border-radius: 0.3rem;
+    width: 72%;
+    margin:  1rem auto;
+    transition: 0.3s;
+}
+.btnContainer{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    width: 100%;
+}
+ .btnCrearActividad{
+    text-decoration: none;
+    text-align: center;
+    color: black;
+    font-size: 1.8rem;
+    border-radius: 0.3rem;
+    background: transparent;
+    border: 3px solid black;
+    cursor: pointer;
+    transition: 0.3s;
+
+}
+.btnCrearActividad:hover{
+    background-color: black;
+    color:#FEEA00 ;
+} 
+.btnCrearActividadDisabled{
+    text-decoration: none;
+    text-align: center;
+    color: gray;
+    font-size: 1.8rem;
+    border-radius: 0.3rem;
+    background: transparent;
+    border: 3px solid gray;
+    cursor: pointer;
+    transition: 0.3s;
+}
+.ids{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    margin-right: 15rem;
+    font-size: 1.5rem;
+    border-radius: 0.3rem;
+    padding: 2rem;
+    box-shadow: black 3px 3px 5px;
+    background: #FEEA00;
+    width: 20vw;
+}
+.ids button{
+    border: none;
+    text-decoration: none;
+    text-align: center;
+    color: black;
+    font-size: 1.8rem;
+    border-radius: 0.3rem;
+    background: transparent;
+    cursor: pointer;
+    transition: 0.3s;
+}
+.ids button:hover{
+    background-color: black;
+    color:#FEEA00 ;
+}
+.ids span{
+    box-shadow: black 3px 3px 5px;
+    width: 7vw;
+    background: white;
+    border-radius: 0.2rem;
+    padding: 0.5rem;
+    margin:  0.5rem;
+}

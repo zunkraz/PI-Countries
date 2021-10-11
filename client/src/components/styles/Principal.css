@@ -1,0 +1,6 @@
+.mainP{
+    margin: 0;
+    box-sizing: border-box;
+    display: grid;
+    grid-template-columns: 20% 80%;
+}

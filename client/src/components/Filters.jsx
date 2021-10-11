@@ -1,7 +1,7 @@
 import React, {useState} from 'react'
 import {orderAZ, orderZA,filterValue, activityFilter, verPaises} from '../actions/actions';
 import { useDispatch } from 'react-redux';
-
+import './styles/Filters.css'
  
 const Filters = ({changePage}) => {
 
@@ -24,7 +24,6 @@ const handleChange = e => {
 }
 if(state.filtro){ 
     let valor = state.filtro
-    console.log(valor)
     if(valor === 'Con Actividad' || valor === 'Sin Actividad'){
         setstate({filtro:''})
         changePage(1)
@@ -36,16 +35,17 @@ if(state.filtro){
 }
 
     return ( 
-        <div>
-            <label htmlFor='order'>Ordenar Por</label>
-           <select onChange={e => orderCountries(e.target.value)}>
+        <div className='mainFilters'>
+        <label htmlFor='order' className='label'>Ordenar Por:</label>
+           <select onChange={e => orderCountries(e.target.value)} className='select'>
            <option>Seleccionar</option>
            <option key='8' name='Z-A' value='Z-A'>Z-A</option>
            <option key='9' name='A-Z' value='A-Z'>A-Z</option>
            </select>
 
-        <label htmlFor='filterBy'>Filtrar Por</label>
+        <label htmlFor='filterBy'  className='label'>Filtrar Por:</label>
         <select 
+                className='select'
                 name="filtro" 
                 id='filterBy' 
                 value={state.filtro}
@@ -65,7 +65,7 @@ if(state.filtro){
         </optgroup>
         </select>   
 
-        <button onClick={() => dispatch(verPaises())}>Limpiar Filtros</button>
+        <button className='btnClean' onClick={() => dispatch(verPaises())}>Limpiar Filtros</button>
         </div>
     
      );

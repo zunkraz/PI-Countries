@@ -20,7 +20,7 @@ import {
 //libreria extra
 import Swal from 'sweetalert2'
 //creadores de acciones
-
+import axios from 'axios'
 export function verPaises(){
 
     return function(dispatch){
@@ -34,28 +34,30 @@ export function verPaises(){
 export function busquedaPais(name){
 
     return async function(dispatch){
-        dispatch({type: PAISES_LOADING,payload:true})  
-        let request =  await fetch(`http://localhost:3001/countries/?name=${name}`)
-        request = await request.json()
-            if(request.status === 404){
-                dispatch({type: BUSCAR_PAIS_ERROR, payload:'País no encontrado'})
-            }else{
-               dispatch({type: BUSCAR_PAIS, payload: request})
-            }
-                
+        dispatch({type: PAISES_LOADING,payload:true})
+        let request 
+        try{
+            request = await axios.get(`http://localhost:3001/countries/?name=${name}`)
+        }catch(error){
+            dispatch({type: BUSCAR_PAIS_ERROR, payload:'País no encontrado, limpie los filtros'})
+        }
+        if(request){
+              request = await request.data
+              return dispatch({type: BUSCAR_PAIS, payload: request})
+         }
+              
                 
     }
 }
 export function verDetalle(idPais){
     return function(dispatch){
         dispatch({type: PAISES_LOADING,payload:true})
-        console.log('entro')
        return fetch(`http://localhost:3001/countries/${idPais}`)
         .then(response => response.json())
         .then(data => dispatch({type: VER_DETALLE_PAIS,payload: data})) 
 }
 }
-//ESTO HAY QUE CORREGIRLO Y PERSONALIZAR LO QUE SE MANDA AL FRONT
+
 
 export function clearFilters(){
     return function(dispatch){

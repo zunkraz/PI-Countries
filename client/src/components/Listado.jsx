@@ -25,26 +25,33 @@ useEffect( () => {
 
 const showDetails = e => dispatch(verDetalle(e)) 
 
-const paises = arrPage.map(element => {
-                let valor = 
-                <Link to={`/principal/${element.id}`} key={element.id}>
-                <div
-                className='divPaisesInterno'
-                onClick={() => showDetails(element.id)}>
+let paises
+if(arrFilters[0] === 'Nada Que mostrar'){
+    paises = <span className='spanListado'>No hay Actividades aún, limpie los filtros</span>
+}else{
 
-                        <img src={element.image} alt="image of some country"
-                        className='divImage'/>
-                        <h2>{element.nombre}</h2>
-                        <h3>{element.continente}</h3>
-                    
-                    </div>
-                </Link>
-                
-        return valor
-});
-
+    paises = arrPage.map(element => {
+                   let valor = 
+                   <Link to={`/principal/${element.id}`} key={element.id}>
+                   <div
+                   className='subListado'
+                   onClick={() => showDetails(element.id)}>
+   
+                           <h2 className='nombrePais'>{element.nombre}</h2>
+                           <img src={element.image} alt="some country"
+                           className='divImage'/>
+                           <h3>Continente:</h3>
+                           <h2>{element.continente}</h2>
+                           <span className='btn'>Ver Pais</span>
+                       </div>
+                   </Link>
+                   
+           return valor
+   });
+}
+ 
     return (  
-    <div className='divPaises'>{paises}</div>
+    <div className='mainListado'>{paises}</div>
 
     );
 }

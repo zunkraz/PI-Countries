@@ -2,7 +2,7 @@ import React, {useState} from 'react';
 import Listado from './Listado';
 import Paginado from './Paginado';
 import Nav from './Nav';
-
+import './styles/Principal.css'
 
 const Principal = () => {
     
@@ -15,16 +15,23 @@ const Principal = () => {
 const changePage = page => setPage(page)
 
   return ( 
-<div>
-
-    <Nav changePage={changePage}/>
-
-        <Listado
-        page={page}
-        changePage={changePage}/>  
+<div className='mainP'>
   
-    <Paginado 
-    changePage={changePage}/>
+    <Nav changePage={changePage}
+    />
+  
+ 
+  <div className='panel'>
+      <Listado
+      page={page}
+      changePage={changePage}/>  
+   
+    
+      <Paginado 
+      changePage={changePage}
+      page={page}/>
+   
+  </div>
 
 </div>);
 }

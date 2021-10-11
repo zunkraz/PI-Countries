@@ -41,7 +41,8 @@ switch (action.type) {
             paises: action.payload,
             loading: false,
             filters:action.payload,
-            aux: {}
+            aux: {},
+            error: ''
         }
     case BUSCAR_PAIS: 
         return {
@@ -106,7 +107,7 @@ switch (action.type) {
     case CON_ACTIVIDAD_FILTER:
         return{
             ...state,
-            filters: state.paises.filter(pais => pais.Activities > 0),
+            filters: state.paises.filter(pais => pais.Activities > 0).length ? state.paises.filter(pais => pais.Activities > 0) : ['Nada Que mostrar'],
             loading:false,
         }
     case SIN_ACTIVIDAD_FILTER:

@@ -1,16 +1,53 @@
-.divPaises{
-    margin-top: 1vh;
+.mainListado{
    display: grid;
-   grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
-   row-gap: 15px;
-   column-gap: 15px;
+   grid-template-columns: 1fr 1fr 1fr;
+   grid-template-rows: 1fr 1fr 1fr 1fr;
+   height: 90vh;
+   overflow-y: scroll;
+   justify-items: center;
+
 }
-.divPaisesInterno{
-    background-color: cornflowerblue;
+.mainListado a {
+    text-decoration: none;
+}
+.subListado{
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    height: 53vh;
+    width: 18vw;
+    border-radius: 0.2rem;
     text-align: center;
+    transition: 0.5s;
+    color: black;
+    box-shadow: grey 9px 9px 10px;
+   
 }
+
 .divImage{
-    margin-top: 10px;
-    width: 200px;
-    height: 150px;
+    
+    width: 70%;
+    height: 35%;
+    border-radius: 0.2rem;
+    box-shadow: black 2px 2px 5px;
+}
+.btn{
+    font-size: 1.5rem;
+    border-bottom: 1px solid black;
+    transition: 0.3s;
+}
+.btn:hover{
+    border-radius: 0.2rem;
+ padding:  0.2rem 0.5rem;
+  background: black;
+  color: white;
+}
+.spanListado{
+    font-size: 5rem;
+    width: 60vw;
+    margin-left: 10vw;
+    margin-top: 25vh;
+    text-align: center;
+    box-shadow: black 4px 4px 10px;
+    border-radius: 0.4rem;
+    background-color: #FEEA00;
 }
