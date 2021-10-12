@@ -17,8 +17,6 @@ import {
     CLEAR_FILTERS,
 } from '../types'
 
-//libreria extra
-import Swal from 'sweetalert2'
 //creadores de acciones
 import axios from 'axios'
 export function verPaises(){
@@ -93,11 +91,7 @@ export function crearActividad(obj) {
         })
         .then(() => dispatch({type:CREAR_ACTIVIDAD}))
         .then(() => dispatch({type: CLEAR_PAISES}))
-        .then(() => { Swal.fire(
-            'Correcto',
-            'La actividad se agregó correctamente',
-            'success'
-        )})
+        .then(() => alert( 'La actividad se agregó correctamente',))
         
     }
 }
