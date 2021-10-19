@@ -129,3 +129,16 @@ Se desarrolló un servidor en Node/Express con las siguientes rutas:
   - Recibe los datos recolectados desde el formulario controlado de la ruta de creación de actividad turística por body
   - Crea una actividad turística en la base de datos
 
+
+<p align="left">
+  <img height="200" width="400" src="./pi1.png" />
+</p>
+<p align="left">
+  <img height="200" width="400" src="./pi2.png" />
+</p>
+<p align="left">
+  <img height="200" width="400" src="./pi3.png" />
+</p>
+<p align="left">
+  <img height="200" width="400" src="./pi4.png" />
+</p>
