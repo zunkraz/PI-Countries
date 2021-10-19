@@ -11,7 +11,7 @@ const Nav = ({changePage}) => {
     const error404 = useSelector(state => state.error)
  
     const [searchCountry, setSearchCountry] = useState()
-    const [error, setError] = useState(false)
+    const [error, setError] = useState(true)
     const handleSubmit = e => {
         e.preventDefault()
         //Envio de solicitud

@@ -32,7 +32,6 @@ const handleChange = e => {
     if(e.target.name === 'nombre'){
         var regex = /\d+/g;
         let val = e.target.value.match(regex)  
-        console.log(val)
         //ERROR validOne
         setActivity({
             ...activity,
@@ -60,13 +59,13 @@ const handleChange = e => {
              }
          }
     
-    }else if(e.target.name === 'dificultad' && e.target.value !== 'Seleccionar'){
+    }else if(e.target.name === 'dificultad'){
         setActivity({
             ...activity,
             dificultad: e.target.value
         })
         
-        if(Object.values({...activity, dificultad: e.target.value}).includes('') || activity.countries.length === 0 ){
+        if(Object.values({...activity, dificultad: e.target.value}).includes('') || Object.values({...activity, dificultad: e.target.value}).includes('Seleccionar') ||  activity.countries.length === 0 ){
             setError({
                 ...error,
                 invalidThree:true
@@ -104,12 +103,12 @@ const handleChange = e => {
             }
         }
         
-    }else if(e.target.name === 'temporada' && e.target.name !== 'Seleccionar'){
+    }else if(e.target.name === 'temporada'){
         setActivity({
             ...activity,
             temporada: e.target.value
         })
-        if(Object.values({...activity, temporada: e.target.value}).includes('') || activity.countries.length === 0 ){
+        if(Object.values({...activity, temporada: e.target.value}).includes('') || Object.values({...activity, temporada: e.target.value}).includes('Seleccionar') || activity.countries.length === 0 ){
             setError({
                 ...error,
                 invalidThree:true
@@ -120,13 +119,13 @@ const handleChange = e => {
                 invalidThree:false
             }) 
         }
-    }else if(e.target.name ==='countries' && !activity['countries'].includes(e.target.value)){
+    }else if(e.target.name ==='countries' && !activity['countries'].includes(e.target.value) && e.target.value !== 'Seleccionar'){
         setActivity({
             ...activity,
             countries:  [...activity.countries, e.target.value]  
          }
         )
-        if(Object.values(activity).includes('')){
+        if(Object.values(activity).includes('') ){
             setError({
             ...error,
             invalidThree: true,
@@ -145,7 +144,7 @@ const deleteId = id => {
     ...activity,
     countries: activity.countries.filter( e => e !== id)
     })
-    if(activity.countries.filter( e => e !== id).length === 0 || Object.values(activity).includes('')){
+    if(activity.countries.filter( e => e !== id).length === 0 || Object.values(activity).includes('') || Object.values({...activity}).includes('Seleccionar')){
         setError({
             ...error,
             invalidThree: true
@@ -164,10 +163,7 @@ const handleSubmit = e => {
     e.preventDefault();
    
         dispatch(crearActividad(activity))
-        //AQUI TENEMOS QUE RENDERIZAR un mensaje
-        //TERMINAR 
-        //TERMINAR 
-        //TERMINAR
+      
         //Limpieza del form
         setActivity({
             nombre: '',
@@ -175,6 +171,9 @@ const handleSubmit = e => {
             duracion: '',
             temporada: '',
             countries: [],
+        })
+        setError({
+            invalidThree:true
         })
     
 }
@@ -197,7 +196,7 @@ return (
         className='selectActividad'
         name="countries" 
         id='countries'
-        value={activity.countries} 
+        // value={activity.countries} 
         onChange={handleChange}>
         <option defaultValue>Seleccionar</option>
         {state.map(pais =>
@@ -210,7 +209,7 @@ return (
         className='selectActividad'
         name="dificultad" 
         id='dificulties' 
-        value={activity.dificultad}
+        // value={activity.dificultad}
         onChange={handleChange}>
         { ['Seleccionar',1,2,3,4,5].map(val =>
             (<option key={val} value={val}>{val}</option>))
@@ -232,7 +231,7 @@ return (
         className='selectActividad'
         id='temporada' 
         name="temporada" 
-        value={activity.temporada}
+        // value={activity.temporada}
         onChange={handleChange}>
         {['Seleccionar','Invierno', 'Primavera','Verano','Otoño'].map(val =>
             (<option key ={val} value={val}>{val}</option>))
@@ -250,7 +249,7 @@ return (
         </form>
     
         {activity.countries.length > 0 ? 
-        <div className='ids'>{activity.countries.map(e => (<span>{e} <button onClick={() => deleteId(e)}>x</button></span>))}</div>
+        <div className='ids'>{activity.countries.map(e => (<span key={e}>{e} <button onClick={() => deleteId(e)}>x</button></span>))}</div>
          : null}
         </div>
      );

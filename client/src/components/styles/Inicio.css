@@ -24,7 +24,7 @@
 }
 .uno{
     height: 100vh;
-    border: chocolate solid 1px;
+
 }
 .dos{
     height: 100vh;
@@ -41,3 +41,31 @@
     height: 100%;
 }
 
+@media only screen and (max-width: 700px) {
+    .mainInicio{
+        grid-template-columns:100%;
+    }
+    .dos{
+        width: 100vw;
+        position: absolute;
+        top:0;
+        filter: brightness(70%);
+    }
+.uno{
+    visibility: hidden;
+}
+.btnIniciar{
+    top: calc(40%);
+    left: calc(30%);
+    visibility: visible;
+    z-index: 1;
+    color: white;
+    border: 3px solid;
+}
+.btnIniciar:hover{
+    color: black;
+    background-color: white;
+    border: none;
+}
+
+}

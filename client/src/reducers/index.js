@@ -48,7 +48,8 @@ switch (action.type) {
         return {
             ...state,
             filters: [action.payload],
-            loading:false
+            loading:false,
+            error: ''
         }
     case BUSCAR_PAIS_ERROR:
         return{

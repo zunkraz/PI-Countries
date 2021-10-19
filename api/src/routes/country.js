@@ -37,6 +37,7 @@ router.get('/', async (req,res)=> {
 
 router.get('/:idPais', async (req,res)=> {
     const {idPais} = req.params
+
     try{
         let Idpais = (await Country.findByPk(idPais,{
         include: Activity,

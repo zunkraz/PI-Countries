@@ -6,7 +6,7 @@ import ig from './styles/imgs/insta.png'
 import linkedin from './styles/imgs/linkedin.png'  
 import git from './styles/imgs/git.png'  
 import { Link } from 'react-router-dom';
-
+// import arrow from './styles/imgs/arrow.png'
 
 const Filters = ({changePage}) => {
 
@@ -77,6 +77,7 @@ if(state.filtro){
                 <Link to='//linkedin.com/in/zunkraz' target='_blank'><img src={linkedin} className='icons' alt="" /></Link>
                <Link to='//github.com/zunkraz' target='_blank'><img src={git} className='icons' alt="" /></Link>
             </div>
+           {/* <img className='icons arrow' scroll-behavior='smooth' src={arrow} alt="" /> */}
         </div>
      );
 }
