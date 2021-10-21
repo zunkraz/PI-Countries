@@ -18,10 +18,7 @@ La aplicación presente esta pensada para la visualización de informacion asoci
 
 __IMPORTANTE:__ 
 
-
-## BoilerPlate
-
-El boilerplate cuenta con dos carpetas: `api` y `client`. En estas carpetas estará el código del back-end y el front-end respectivamente.
+La estructura base cuenta con dos carpetas: `api` y `client`. En estas carpetas estará el código del back-end y el front-end respectivamente.
 
 
 Adicionalmente para este proyecto se utilizaraa una base de datos en postgreSQL la cual llevara por nombre `countries`
